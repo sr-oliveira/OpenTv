@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Smart Launcher TV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Arial;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg,#0f172a,#020617);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    gap: 40px;
+}
+
+.app {
+    height: 180px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+    border: 4px solid transparent;
+}
+
+.app:focus {
+    outline: none;
+    transform: scale(1.08);
+    border-color: #38bdf8;
+    box-shadow: 0 0 30px rgba(56,189,248,0.6);
+}
+
+.netflix { background:#e50914; }
+.vivo { background:#6b21a8; }
+.xbox { background:#107c10; }
+.spotify { background:#1db954; }
+.browser { background:#374151; }
+.settings { background:#1f2933; }
+
+.header {
+    position: absolute;
+    top: 20px;
+    font-size: 22px;
+    opacity: 0.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">Smart Launcher TV</div>
+
+<div class="grid">
+
+<div tabindex="1" class="app vivo"
+onclick="openApp('https://vivotv.vivo.com.br')">
+Vivo TV
+</div>
+
+<div tabindex="2" class="app netflix"
+onclick="openApp('https://www.netflix.com')">
+Netflix
+</div>
+
+<div tabindex="3" class="app xbox"
+onclick="openApp('https://www.xbox.com/play')">
+Xbox Cloud
+</div>
+
+<div tabindex="4" class="app spotify"
+onclick="openApp('https://open.spotify.com')">
+Spotify
+</div>
+
+<div tabindex="5" class="app browser"
+onclick="openApp('https://google.com')">
+Navegador
+</div>
+
+<div tabindex="6" class="app settings"
+onclick="toggleFullscreen()">
+Tela Cheia
+</div>
+
+</div>
+
+<script>
+
+function openApp(url){
+    window.location.href = url;
+}
+
+// navegação por teclado / controle remoto
+document.addEventListener("keydown", e => {
+
+    let focused = document.activeElement;
+
+    if(e.key === "Enter"){
+        focused.click();
+    }
+
+});
+
+// fullscreen estilo smart tv
+function toggleFullscreen(){
+    if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+// foco inicial
+window.onload = () => {
+    document.querySelector(".app").focus();
+};
+
+</script>
+
+</body>
+</html>
