@@ -1,0 +1,12 @@
+{
+  "name": "mytv-launcher",
+  "version": "1.0.0",
+  "description": "Launcher web para TV Box",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
